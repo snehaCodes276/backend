@@ -68,7 +68,7 @@ app.put('/api/orders/:id/deliver', async (req, res) => {
 });
 
 // Serve Static Files for Owner Dashboard under /server
-app.use('/server', express.static(path.join(__dirname, 'public')));
+
 
 // Redirect /server to /server/index.html
 app.get('/server', (req, res) => {
