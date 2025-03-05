@@ -1,13 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors'); // Added CORS
 
 // Initialize Express App
 const app = express();
+app.use(cors()); // Enable CORS for cross-origin requests
 app.use(express.json());
 
 // MongoDB Connection
-const mongoURI = "mongodb+srv://eswarsai8074:GxlEfEfJ2Fw9g7nj@cluster0.fpvov.mongodb.net/test?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGO_URI || "mongodb+srv://eswarsai8074:GxlEfEfJ2Fw9g7nj@cluster0.fpvov.mongodb.net/test?retryWrites=true&w=majority";
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.error("MongoDB Connection Error:", err));
@@ -75,5 +77,5 @@ app.get('/server', (req, res) => {
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log("Server running on port ${PORT}");
+    console.log(`Server running on port ${PORT}`);
 });
