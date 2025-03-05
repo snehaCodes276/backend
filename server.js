@@ -9,10 +9,11 @@ app.use(cors()); // Enable CORS for cross-origin requests
 app.use(express.json());
 
 // MongoDB Connection
-const mongoURI = process.env.MONGO_URI || "mongodb+srv://eswarsai8074:GxlEfEfJ2Fw9g7nj@cluster0.fpvov.mongodb.net/test?retryWrites=true&w=majority";
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.error("MongoDB Connection Error:", err));
+mongoose.connect("mongodb+srv://eswarsai8074:GxlEfEfJ2Fw9g7nj@cluster0.fpvov.mongodb.net/test?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
 
 // Define Schema and Model
 const orderSchema = new mongoose.Schema({
